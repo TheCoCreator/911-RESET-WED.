@@ -5,15 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Calm Anchor | 911 Reset Wednesdays</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
+              script: ['Caveat', 'cursive'],
             },
             colors: {
+              amy: {
+                navy: '#0A2458',
+                gold: '#F0C27B',
+                orange: '#E85A3C',
+                lightBlue: '#F4F8FA',
+                text: '#334155',
+                cream: '#FFF9F0',
+              },
               slate: {
                 850: '#1e293b',
               },
@@ -23,6 +32,9 @@
                 800: '#115e59',
                 900: '#134e4a',
               }
+            },
+            boxShadow: {
+              'amy': '0 20px 40px -15px rgba(10, 36, 88, 0.15)',
             }
           }
         }
@@ -31,8 +43,19 @@
     <style>
       body {
         font-family: 'Inter', sans-serif;
-        background-color: #f8fafc;
+        background-color: #ffffff;
         color: #334155;
+      }
+      /* Smooth accordion transition */
+      .accordion-content {
+        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+      }
+      .accordion-content.open {
+        max-height: 500px;
+        opacity: 1;
       }
     </style>
   <script type="importmap">

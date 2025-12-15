@@ -1,88 +1,105 @@
 import React from 'react';
-import { Star, ArrowRight } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
 
-export const HeroSection: React.FC = () => {
+interface HeroSectionProps {
+  onStartCheckout: () => void;
+}
+
+export const HeroSection: React.FC<HeroSectionProps> = ({ onStartCheckout }) => {
   return (
-    <section className="w-full flex flex-col items-center">
-      {/* Primary Hero Block */}
-      <div className="w-full max-w-4xl px-6 py-16 md:py-24 text-center">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight mb-6">
-          911 RESET WEDNESDAYS
-        </h1>
-        <p className="text-xl md:text-2xl text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-          A weekly grounding space for people who carry too much and never get a moment to breathe.
-        </p>
+    <section className="w-full bg-amy-lightBlue pt-12 pb-20 md:pt-24 md:pb-32 px-6 lg:px-12 overflow-hidden relative">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-12 items-center">
+        
+        {/* Left Column: Text */}
+        <div className="md:col-span-7 z-10 relative">
+            
+            {/* Super header */}
+            <p className="text-amy-orange font-bold tracking-widest uppercase text-sm mb-4">
+                WEEKLY CALM ANCHOR
+            </p>
 
-        {/* Social Proof Quote */}
-        <div className="flex flex-col items-center justify-center space-y-3 mb-10 bg-teal-50/50 p-6 rounded-xl border border-teal-100">
-          <div className="flex space-x-1">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-            ))}
-          </div>
-          <blockquote className="text-lg italic text-slate-700">
-            “The first time in years my body actually let go.”
-          </blockquote>
-          <cite className="text-sm font-semibold text-teal-700 not-italic uppercase tracking-wider">
-            — ER Nurse
-          </cite>
+            {/* Hook / Headline */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-amy-navy leading-[1.05] mb-6 font-sans">
+                <span className="relative inline-block">
+                  911 Reset
+                  <svg className="absolute w-full h-3 -bottom-1 left-0 text-amy-gold opacity-60" viewBox="0 0 200 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.00025 6.99997C2.00025 6.99997 101.5 0.999967 197.5 3.99998" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/></svg>
+                </span> Wednesdays
+            </h1>
+            
+            {/* Subheading */}
+            <p className="text-xl md:text-2xl text-slate-600 mb-10 leading-relaxed max-w-2xl">
+                ...A quiet mid-week reset for bodies that carry more than most people will ever understand.
+            </p>
+
+            {/* CTA Container with Arrow */}
+            <div className="relative inline-block mt-4">
+                {/* Hand drawn arrow pointing to button - Positioned ABOVE */}
+                <div className="absolute -top-14 left-0 w-32 hidden md:block">
+                     <p className="font-script text-xl text-amy-navy mb-1 ml-4 rotate-[-6deg]">Start here!</p>
+                     <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-amy-navy w-10 h-10 ml-8 transform rotate-90">
+                        <path d="M10 25 C 20 25, 35 25, 50 25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        <path d="M50 25 L 40 18 M 50 25 L 40 32" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                </div>
+
+                <button 
+                    onClick={onStartCheckout}
+                    className="bg-amy-orange hover:bg-orange-600 text-white font-bold py-5 px-10 rounded text-lg shadow-amy hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center gap-2"
+                >
+                    Save your seat
+                </button>
+            </div>
+
+            {/* Social Proof */}
+            <div className="mt-12 flex flex-col sm:flex-row items-center gap-4 opacity-90">
+                <div className="flex -space-x-2">
+                    {[1,2,3].map(i => (
+                        <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-xs text-slate-500 overflow-hidden">
+                            {/* Placeholder for small avatars */}
+                            <UserIcon />
+                        </div>
+                    ))}
+                </div>
+                <div className="flex flex-col">
+                    <div className="flex text-amy-gold">
+                        {[1, 2, 3, 4, 5].map((i) => (
+                            <Star key={i} className="w-4 h-4 fill-current" />
+                        ))}
+                    </div>
+                    <p className="text-slate-600 text-sm font-medium italic">
+                        "The first time in years my body actually let go."
+                    </p>
+                </div>
+            </div>
         </div>
 
-        <button className="bg-teal-700 hover:bg-teal-800 text-white font-medium py-4 px-8 rounded-lg transition-all shadow-md hover:shadow-lg flex items-center gap-2 mx-auto text-lg">
-          JOIN 911 RESET WEDNESDAYS
-          <ArrowRight className="w-5 h-5" />
-        </button>
-      </div>
-
-      {/* Problem / Agitation Block */}
-      <div className="w-full bg-white border-y border-slate-200">
-        <div className="max-w-3xl mx-auto px-6 py-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 text-center">
-            This Is Why You Don’t Feel Ready
-          </h2>
-          
-          <div className="space-y-6 text-lg text-slate-700 leading-relaxed">
-            <p>
-              It’s not because you need to “shake it off” or push harder. <br />
-              It’s because you’ve been trying to come down from high alert <span className="font-bold text-slate-900">in isolation</span>.
-            </p>
-            <p>
-              Frontline work was never meant to be processed alone. When you’re by yourself, every spike of tension feels like something is wrong with you.
-            </p>
-            <p className="font-medium text-teal-800">
-              But when you’re in a steady circle of people who understand the load?
-            </p>
-            <ul className="list-none space-y-2 pl-4 border-l-4 border-teal-200">
-              <li>Your breath deepens.</li>
-              <li>Your shoulders drop.</li>
-              <li>Your system remembers how to settle.</li>
-            </ul>
-          </div>
-
-          {/* Secondary Social Proof */}
-          <div className="mt-16 text-center">
-             <div className="flex justify-center space-x-2 mb-4 text-slate-900">
-                <Star className="w-6 h-6 fill-black" />
-                <Star className="w-6 h-6 fill-black" />
-                <Star className="w-6 h-6 fill-black" />
-                <Star className="w-6 h-6 fill-black" />
-                <Star className="w-6 h-6 fill-black" />
-             </div>
-             <p className="text-xl font-medium text-slate-800 mb-4">
-               “The reset I feel in my body after these sessions is unlike anything I can do on my own.”
-             </p>
-             <p className="text-slate-500 font-medium uppercase text-sm tracking-wide">
-               — Emergency Department Nurse
-             </p>
-             
-             <div className="mt-8">
-               <button className="text-teal-700 font-bold border-b-2 border-teal-700 hover:text-teal-900 hover:border-teal-900 transition-colors">
-                 JOIN 911 RESET WEDNESDAYS NOW
-               </button>
-             </div>
-          </div>
+        {/* Right Column: Photo Cutout Style */}
+        <div className="md:col-span-5 relative mt-12 md:mt-0">
+            {/* Blob Background */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-amy-gold/20 rounded-full blur-3xl -z-10"></div>
+            
+            {/* Photo Placeholder - Pill Shape for Amy Style */}
+            <div className="aspect-[3/4] bg-white rounded-t-[10rem] rounded-b-[2rem] shadow-2xl overflow-hidden relative border-8 border-white">
+                 <div className="absolute inset-0 bg-slate-100 flex items-center justify-center text-slate-400 font-semibold text-lg text-center p-8">
+                     [INSERT IMAGE:<br/>Tim Smiling,<br/>Warm Lighting]
+                 </div>
+                 {/* <img src="/path/to/tim.jpg" alt="Tim smiling" className="w-full h-full object-cover" /> */}
+            </div>
+            
+            {/* Floating Badge */}
+            <div className="absolute bottom-8 -left-8 bg-white p-4 rounded-lg shadow-lg max-w-[200px] hidden md:block rotate-[-3deg]">
+                <p className="font-script text-2xl text-amy-navy leading-none mb-1">Weekly Reset</p>
+                <p className="text-xs text-slate-500 font-sans uppercase tracking-wider font-bold">Live + Replays</p>
+            </div>
         </div>
+
       </div>
     </section>
   );
 };
+
+const UserIcon = () => (
+    <svg className="w-full h-full text-slate-300" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+    </svg>
+);
